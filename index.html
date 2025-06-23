@@ -3,11 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Plataforma de estudos independentes" />
+  <meta name="description" content="Plataforma de estudos independentes MCTech Learning, oferecendo conteúdos e ferramentas educacionais acessíveis para aprendizado contínuo e autônomo." />
   <meta name="theme-color" content="#6c63ff" />
-  <title>MCTech Learning</title>
-  <!-- Removed external Google Fonts link due to network restrictions -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <!-- Performance optimizations -->
+  <link rel="preload" href="assets/css/main.min.css" as="style" />
+  <link rel="preload" href="assets/js/main.min.js" as="script" />
+  <link rel="preload" href="assets/images/logo.webp" as="image" type="image/webp" />
+  
+  <!-- Font display optimization -->
+  <style>
+    /* Critical CSS for initial render */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-display: swap;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      background: #fff;
+    }
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      color: #6c63ff;
+    }
+  </style>
+  
   <link rel="stylesheet" href="assets/css/main.min.css" />
+  
+  <!-- PWA support -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon" href="assets/images/icon-192.png" />
 </head>
 <body>
   <div id="loader" class="loader">Carregando...</div>
@@ -24,15 +61,38 @@
     <a class="btn-contact animate" href="mailto:mike@mctechlearning.org">Contato por e-mail</a>
     <footer class="animate">© 2025 MCTech Learning - Todos os direitos reservados</footer>
   </div>
-  <script src="assets/js/main.min.js"></script>
+  <!-- Carregamento otimizado de JavaScript -->
+  <script src="assets/js/main.min.js" defer></script>
   <script>
-    // Register service worker
+    // Registro do service worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
           .then(reg => console.log('Service worker registered'))
           .catch(err => console.log('Service worker registration failed:', err));
       });
+    }
+    
+    // Pré-carregamento de recursos quando o navegador estiver ocioso
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        // Pré-carregar imagens adicionais se necessário
+        const preloadLink = document.createElement('link');
+        preloadLink.rel = 'prefetch';
+        preloadLink.href = 'assets/images/icon-192.png';
+        document.head.appendChild(preloadLink);
+      });
+    }
+    
+    // Métricas de performance
+    if ('performance' in window && 'PerformanceObserver' in window) {
+      const observer = new PerformanceObserver((list) => {
+        const perfEntries = list.getEntries();
+        const lcpEntry = perfEntries[perfEntries.length - 1];
+        console.log('LCP:', lcpEntry.startTime);
+        console.log('LCP element:', lcpEntry.element);
+      });
+      observer.observe({entryTypes: ['largest-contentful-paint']});
     }
   </script>
 </body>
