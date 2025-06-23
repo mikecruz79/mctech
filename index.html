@@ -11,6 +11,7 @@
   <link rel="preload" href="assets/css/main.min.css" as="style" />
   <link rel="preload" href="assets/js/main.min.js" as="script" />
   <link rel="preload" href="assets/images/logo.webp" as="image" type="image/webp" />
+  <link rel="preload" href="assets/css/visual-elements.min.css" as="style" />
   
   <!-- Font display optimization -->
   <style>
@@ -39,6 +40,7 @@
   </style>
   
   <link rel="stylesheet" href="assets/css/main.min.css" />
+  <link rel="stylesheet" href="assets/css/visual-elements.min.css" />
   
   <!-- PWA support -->
   <link rel="manifest" href="manifest.json" />
@@ -47,22 +49,53 @@
   <link rel="apple-touch-icon" href="assets/images/icon-192.png" />
 </head>
 <body>
+  <!-- Elementos decorativos de fundo -->
+  <div class="bg-decoration"></div>
+  <div class="geometric-pattern pattern-circles"></div>
+  <div class="geometric-pattern pattern-grid"></div>
+  <div class="geometric-pattern pattern-dots"></div>
+  <div class="texture-overlay"></div>
+  
+  <!-- Easter eggs -->
+  <div class="easter-egg">🎉 Você encontrou um easter egg! Bem-vindo ao clube dos curiosos!</div>
+  <div class="theme-toggle">🌙</div>
+  
   <div id="loader" class="loader">Carregando...</div>
-  <div class="container animate">
+  <div class="container animate custom-cursor">
+    <!-- Elementos decorativos nos cantos -->
+    <div class="decorative-corner corner-top-left"></div>
+    <div class="decorative-corner corner-top-right"></div>
+    <div class="decorative-corner corner-bottom-left"></div>
+    <div class="decorative-corner corner-bottom-right"></div>
+    
     <!-- Logo da identidade -->
-    <picture class="animate">
+    <picture class="animate shine-effect">
       <source srcset="assets/images/logo.webp" type="image/webp" />
       <source srcset="assets/images/logo.jpg" type="image/jpeg" />
       <img src="assets/images/logo.jpg" alt="Logo MCTech Learning" class="logo" loading="lazy" />
     </picture>
+    
+    <div class="decorative-line"></div>
+    
     <h1 class="animate">MCTech Learning</h1>
     <h2 class="animate">Educação independente, para todos os momentos</h2>
     <p class="animate">Bem-vindo à academia de estudos livres criada por Mike. Aqui, você encontra conteúdos e ferramentas educacionais acessíveis, desenvolvidas para incentivar o aprendizado contínuo e autônomo em qualquer fase da sua jornada.</p>
-    <a class="btn-contact animate" href="mailto:mike@mctechlearning.org">Contato por e-mail</a>
-    <footer class="animate">© 2025 MCTech Learning - Todos os direitos reservados</footer>
+    <a class="btn-contact animate shine-effect" href="mailto:mike@mctechlearning.org">Contato por e-mail</a>
+    
+    <!-- Links sociais -->
+    <div class="social-links animate">
+      <a href="https://github.com/mikecruz79/mctech" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+        <span class="custom-icon icon-github"></span>
+      </a>
+    </div>
+    
+    <footer class="animate">
+      © <span class="copyright-year">2025</span> MCTech Learning - Todos os direitos reservados
+    </footer>
   </div>
   <!-- Carregamento otimizado de JavaScript -->
   <script src="assets/js/main.min.js" defer></script>
+  <script src="assets/js/visual-elements.min.js" defer></script>
   <script>
     // Registro do service worker
     if ('serviceWorker' in navigator) {
@@ -81,6 +114,17 @@
         preloadLink.rel = 'prefetch';
         preloadLink.href = 'assets/images/icon-192.png';
         document.head.appendChild(preloadLink);
+        
+        // Pré-carregar textura e ícones
+        const textureLink = document.createElement('link');
+        textureLink.rel = 'prefetch';
+        textureLink.href = 'assets/images/texture.png';
+        document.head.appendChild(textureLink);
+        
+        const githubIconLink = document.createElement('link');
+        githubIconLink.rel = 'prefetch';
+        githubIconLink.href = 'assets/images/icon-github.svg';
+        document.head.appendChild(githubIconLink);
       });
     }
     
