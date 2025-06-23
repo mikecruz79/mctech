@@ -9,7 +9,9 @@ const STATIC_ASSETS = [
   '/index.html',
   '/manifest.json',
   '/assets/css/main.min.css',
-  '/assets/js/main.min.js'
+  '/assets/css/visual-elements.min.css',
+  '/assets/js/main.min.js',
+  '/assets/js/visual-elements.min.js'
 ];
 
 // Recursos que raramente mudam
@@ -17,7 +19,10 @@ const IMMUTABLE_ASSETS = [
   '/assets/images/logo.webp',
   '/assets/images/logo.jpg',
   '/assets/images/icon-192.png',
-  '/assets/images/icon-512.png'
+  '/assets/images/icon-512.png',
+  '/assets/images/texture.png',
+  '/assets/images/icon-github.svg',
+  '/assets/images/cursor.svg'
 ];
 
 // Estratégia de cache por tipo de recurso
