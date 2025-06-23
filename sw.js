@@ -16,8 +16,7 @@ const STATIC_ASSETS = [
 
 // Recursos que raramente mudam
 const IMMUTABLE_ASSETS = [
-  '/assets/images/logo.webp',
-  '/assets/images/logo.jpg',
+  '/assets/images/logo.svg',
   '/assets/images/icon-192.png',
   '/assets/images/icon-512.png',
   '/assets/images/texture.png',
